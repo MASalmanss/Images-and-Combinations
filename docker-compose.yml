@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: myuser              # PostgreSQL kullanıcı adı
+      POSTGRES_PASSWORD: mypassword      # PostgreSQL şifresi
+      POSTGRES_DB: mydatabase            # Oluşturulacak veritabanı
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Kalıcı veri saklama
+    ports:
+      - "5432:5432"                      # PostgreSQL portu
+    networks:
+      - postgres-network
+
+volumes:
+  postgres_data:
+
+networks:
+  postgres-network:
+
