@@ -16,3 +16,5 @@ This project utilizes the following Spring dependencies:
 - **Lombok**: Reduces boilerplate code with annotations.
 - **Spring Web**: Enables the creation of RESTful web services.
 - **Validation**: Handles data validation across the application.
+- 
+![Ticaret-Sitesi-ER-Diyagramı](https://github.com/user-attachments/assets/4e5b7461-2991-4290-aa71-ba7d5a46a3e4)
