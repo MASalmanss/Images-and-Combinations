@@ -12,12 +12,12 @@ public class OrderItem {
     private Long id;
 
     private int quantity;
+
     private double price;
 
-    // Her sipariş kalemi bir siparişe ait olur
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Orders orders;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
