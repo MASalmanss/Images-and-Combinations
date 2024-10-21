@@ -65,6 +65,22 @@
 			<version>2.1.0</version> <!-- En son kararlı sürümü kontrol edin -->
 		</dependency>
 
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.7.0</version> <!-- Version numarası en günceline göre değiştirilebilir -->
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+
+
+
 	</dependencies>
 
 	<build>
