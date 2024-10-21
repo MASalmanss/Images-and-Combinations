@@ -1,4 +1,7 @@
 package com.DevelopersGroupINU.Images_And_Combinations.repository;
 
-public interface ProductDetailsRepository {
+import com.DevelopersGroupINU.Images_And_Combinations.entity.ProductDetail;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProductDetailsRepository extends JpaRepository<ProductDetail , Long> {
 }

@@ -9,6 +9,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+//This section for testing
+
 @RestController
 @RequestMapping("/api/file")
 public class FileController {
@@ -23,18 +25,15 @@ public class FileController {
         }
 
         try {
-            // Yükleme dizininin var olup olmadığını kontrol et, yoksa oluştur
             Path uploadPath = Paths.get(UPLOAD_DIR);
             if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath);
             }
 
-            // Dosya adını UUID ile benzersiz hale getir ve uzantıyı koru
             String originalFilename = file.getOriginalFilename();
             String fileExtension = getFileExtension(originalFilename);
             String uniqueFilename = UUID.randomUUID().toString() + fileExtension;
 
-            // Dosyayı belirtilen dizine kaydet
             Path path = Paths.get(UPLOAD_DIR + uniqueFilename);
             Files.write(path, file.getBytes());
 
@@ -45,10 +44,9 @@ public class FileController {
         }
     }
 
-    // Dosya uzantısını almak için yardımcı metod
     private String getFileExtension(String fileName) {
         if (fileName == null || !fileName.contains(".")) {
-            return ""; // Eğer dosya uzantısı yoksa boş bir string döndür
+            return "";
         }
         return fileName.substring(fileName.lastIndexOf("."));
     }

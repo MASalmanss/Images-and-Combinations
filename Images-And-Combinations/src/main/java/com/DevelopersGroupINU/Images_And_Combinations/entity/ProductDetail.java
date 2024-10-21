@@ -14,6 +14,7 @@ public class ProductDetail {
     private String material;
     private String brand;
     private double price;
+    private String imageName;
 
     @OneToOne
     @JoinColumn(name = "product_id")

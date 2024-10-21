@@ -22,6 +22,7 @@ public class Users {
     private String email;
     private String password;
     private boolean isActive;
+    private String imageName;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
