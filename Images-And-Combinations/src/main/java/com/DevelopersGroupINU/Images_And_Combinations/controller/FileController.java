@@ -15,7 +15,6 @@ import java.util.UUID;
 @RequestMapping("/api/file")
 public class FileController {
 
-    // Yüklemelerin kaydedileceği dizin
     private static final String UPLOAD_DIR = "uploads/";
 
     @PostMapping("/upload")

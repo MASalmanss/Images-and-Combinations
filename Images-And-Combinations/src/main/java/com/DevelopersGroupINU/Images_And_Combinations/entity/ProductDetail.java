@@ -16,7 +16,7 @@ public class ProductDetail {
     private double price;
     private String imageName;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product product;
 }

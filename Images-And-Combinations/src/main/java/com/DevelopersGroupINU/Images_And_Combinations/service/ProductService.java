@@ -5,6 +5,7 @@ import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.ProductUpd
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Category;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Orders;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Product;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,5 +16,6 @@ public interface ProductService {
     Void deleteById(Long id);
     Product update(ProductUpdateDto productUpdateDto);
     List<Product> findAll();
+    Boolean saveImg(MultipartFile file , Long id);
 
 }

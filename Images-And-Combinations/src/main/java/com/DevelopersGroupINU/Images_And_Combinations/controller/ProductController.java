@@ -8,6 +8,7 @@ import com.DevelopersGroupINU.Images_And_Combinations.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> findById(@PathVariable Long id){
@@ -45,4 +47,23 @@ public class ProductController {
         var nesne = productService.update(productUpdateDto);
         return ResponseEntity.ok(nesne);
     }
+
+    @PostMapping("/file/{id}")
+    public ResponseEntity<Boolean> fileUpdate(@RequestParam("file") MultipartFile file, @PathVariable("id") Long id) {
+        if (file.isEmpty()) {
+            return ResponseEntity.badRequest().body(false);
+        }
+        Boolean sonuc =productService.saveImg(file , id);
+        if (sonuc){
+            return ResponseEntity.status(200).build();
+        }
+        else {
+            return ResponseEntity.status(200).build();
+        }
+
+
+    }
+
+
+
 }

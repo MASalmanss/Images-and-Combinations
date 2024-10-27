@@ -28,7 +28,7 @@ public class Product {
     private Category category;
 
 
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL , fetch = FetchType.LAZY)
     private ProductDetail productDetail;
 
 
