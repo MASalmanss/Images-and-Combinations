@@ -30,6 +30,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Void save(ProductCreateDto productCreateDto) {
+
         Product product = new Product();
         ProductDetail productDetail = new ProductDetail();
         productDetail.setBrand(productCreateDto.getBrand());

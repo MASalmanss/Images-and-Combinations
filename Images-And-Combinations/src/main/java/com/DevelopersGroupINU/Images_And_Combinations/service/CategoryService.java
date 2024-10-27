@@ -1,11 +1,12 @@
 package com.DevelopersGroupINU.Images_And_Combinations.service;
 
+import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.CategoryCreateDto;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Category;
 
 import java.util.List;
 
 public interface CategoryService {
-    Void save(Category category);
+    Void save(CategoryCreateDto categoryCreateDto);
     Category findById(Long id);
     Void deleteById(Long id);
     Category update(Category category);

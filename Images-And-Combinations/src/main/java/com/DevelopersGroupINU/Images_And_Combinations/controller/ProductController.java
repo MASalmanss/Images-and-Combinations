@@ -32,6 +32,11 @@ public class ProductController {
 
     @PostMapping("")
     public ResponseEntity<Void> save(@RequestBody ProductCreateDto productCreateDto){
+
+        if(productCreateDto.getCategoryId() == null){
+            return ResponseEntity.badRequest().build();
+        }
+
         productService.save(productCreateDto);
         return ResponseEntity.ok().build();
     }

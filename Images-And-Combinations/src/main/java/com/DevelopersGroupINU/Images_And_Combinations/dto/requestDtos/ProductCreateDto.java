@@ -9,5 +9,5 @@ public class ProductCreateDto {
     private String material;
     private String brand;
     private double price;
-
+    private Long categoryId;
 }

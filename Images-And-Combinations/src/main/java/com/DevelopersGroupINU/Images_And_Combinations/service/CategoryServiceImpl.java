@@ -1,12 +1,14 @@
 package com.DevelopersGroupINU.Images_And_Combinations.service;
 
+import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.CategoryCreateDto;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Category;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class CategoryServiceImpl implements CategoryService{
     @Override
-    public Void save(Category category) {
+    public Void save(CategoryCreateDto categoryCreateDto) {
         return null;
     }
 

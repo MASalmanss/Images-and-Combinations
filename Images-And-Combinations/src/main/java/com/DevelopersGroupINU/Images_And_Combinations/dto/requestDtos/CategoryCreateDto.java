@@ -1,0 +1,9 @@
+package com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos;
+
+import lombok.Data;
+
+@Data
+public class CategoryCreateDto {
+    private String name;
+    private String description;
+}
