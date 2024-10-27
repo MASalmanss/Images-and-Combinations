@@ -1,6 +1,8 @@
 package com.DevelopersGroupINU.Images_And_Combinations.controller;
 
 
+import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.ProductCreateDto;
+import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.ProductUpdateDto;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Product;
 import com.DevelopersGroupINU.Images_And_Combinations.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +29,8 @@ public class ProductController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Void> save(@RequestBody Product product){
-        productService.save(product);
+    public ResponseEntity<Void> save(@RequestBody ProductCreateDto productCreateDto){
+        productService.save(productCreateDto);
         return ResponseEntity.ok().build();
     }
 
@@ -39,8 +41,8 @@ public class ProductController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Product> update(@RequestBody Product product){
-        var nesne = productService.update(product);
+    public ResponseEntity<Product> update(@RequestBody ProductUpdateDto productUpdateDto){
+        var nesne = productService.update(productUpdateDto);
         return ResponseEntity.ok(nesne);
     }
 }
