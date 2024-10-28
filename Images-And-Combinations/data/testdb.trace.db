@@ -54,3 +54,9 @@ Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:522)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 50 more
+2024-10-28 14:34:58.964295+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "truncate [*]Category"; expected "TABLE"; SQL statement:
+truncate Category [42001-224]
+2024-10-28 14:35:08.902876+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "Truncate [*]Category"; expected "TABLE"; SQL statement:
+Truncate Category [42001-224]
