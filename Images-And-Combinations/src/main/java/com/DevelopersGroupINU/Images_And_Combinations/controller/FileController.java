@@ -13,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/file")
+@CrossOrigin(origins = "http://localhost:5173")
 public class FileController {
 
     private static final String UPLOAD_DIR = "uploads/";
