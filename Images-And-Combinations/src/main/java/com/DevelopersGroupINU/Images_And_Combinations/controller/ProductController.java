@@ -49,9 +49,9 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("")
-    public ResponseEntity<Product> update(@RequestBody ProductUpdateDto productUpdateDto){
-        var nesne = productService.update(productUpdateDto);
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductViewDto> update(@RequestBody ProductUpdateDto productUpdateDto , @PathVariable Long id){
+        var nesne = productService.update(productUpdateDto , id);
         return ResponseEntity.ok(nesne);
     }
 

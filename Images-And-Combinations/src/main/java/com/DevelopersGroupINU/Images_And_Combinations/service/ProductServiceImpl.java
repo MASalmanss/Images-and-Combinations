@@ -11,7 +11,6 @@ import com.DevelopersGroupINU.Images_And_Combinations.repository.CategoryReposit
 import com.DevelopersGroupINU.Images_And_Combinations.repository.ProductDetailsRepository;
 import com.DevelopersGroupINU.Images_And_Combinations.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -63,8 +62,11 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product update(ProductUpdateDto productUpdateDto) {
-        return null;
+    public ProductViewDto update(ProductUpdateDto productUpdateDto, Long id) {
+        Product product = productRepository.findById(id).orElseThrow(()-> new RuntimeException("Not found"));
+        product.setName(productUpdateDto.getName());
+        var productnew = productRepository.save(product);
+        return productMapper.entityToDto(productnew);
     }
 
 
