@@ -3,6 +3,7 @@ package com.DevelopersGroupINU.Images_And_Combinations.controller;
 
 import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.ProductCreateDto;
 import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.ProductUpdateDto;
+import com.DevelopersGroupINU.Images_And_Combinations.dto.responseDtos.ProductViewDto;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Product;
 import com.DevelopersGroupINU.Images_And_Combinations.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class ProductController {
     }
 
     @GetMapping("")
-    public List<Product> findAll(){
+    public List<ProductViewDto> findAll(){
         return productService.findAll();
     }
 

@@ -2,8 +2,12 @@ package com.DevelopersGroupINU.Images_And_Combinations.service;
 
 import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.ProductCreateDto;
 import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.ProductUpdateDto;
+import com.DevelopersGroupINU.Images_And_Combinations.dto.responseDtos.ProductViewDto;
+import com.DevelopersGroupINU.Images_And_Combinations.entity.Category;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Product;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.ProductDetail;
+import com.DevelopersGroupINU.Images_And_Combinations.mapper.ProductMapper;
+import com.DevelopersGroupINU.Images_And_Combinations.repository.CategoryRepository;
 import com.DevelopersGroupINU.Images_And_Combinations.repository.ProductDetailsRepository;
 import com.DevelopersGroupINU.Images_And_Combinations.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +28,15 @@ public class ProductServiceImpl implements ProductService{
 
     private final ProductRepository productRepository;
     private final ProductDetailsRepository productDetailsRepository;
+    private final CategoryRepository categoryRepository;
+    private final ProductMapper productMapper;
 
     private static final String UPLOAD_DIR = "uploads/";
 
 
     @Override
     public Void save(ProductCreateDto productCreateDto) {
+        Category category = categoryRepository.findById(productCreateDto.getCategoryId()).orElseThrow(()-> new RuntimeException("Kategöri bulunamadı"));
 
         Product product = new Product();
         ProductDetail productDetail = new ProductDetail();
@@ -40,6 +47,7 @@ public class ProductServiceImpl implements ProductService{
         product.setName(productCreateDto.getName());
         productDetail.setProduct(product);
         product.setProductDetail(productDetail);
+        product.setCategory(category);
         productRepository.save(product);
         return null;
     }
@@ -61,8 +69,10 @@ public class ProductServiceImpl implements ProductService{
 
 
     @Override
-    public List<Product> findAll() {
-        return productRepository.findAll();
+    public List<ProductViewDto> findAll() {
+        List<Product> products = productRepository.findAll();
+
+        return productMapper.entityListToDtoList(products);
 
     }
 

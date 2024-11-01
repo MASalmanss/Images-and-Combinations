@@ -39,7 +39,9 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public List<Category> findAll() {
-        return List.of();
+    public List<CategoryViewDto> findAll() {
+        var list = categoryRepository.findAll();
+        List<CategoryViewDto> liste = categoryMapper.entityListTodtoList(list);
+        return liste;
     }
 }

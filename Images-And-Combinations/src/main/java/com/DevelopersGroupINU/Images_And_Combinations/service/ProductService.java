@@ -2,6 +2,7 @@ package com.DevelopersGroupINU.Images_And_Combinations.service;
 
 import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.ProductCreateDto;
 import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.ProductUpdateDto;
+import com.DevelopersGroupINU.Images_And_Combinations.dto.responseDtos.ProductViewDto;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Category;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Orders;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Product;
@@ -15,7 +16,7 @@ public interface ProductService {
     Product findById(Long id);
     Void deleteById(Long id);
     Product update(ProductUpdateDto productUpdateDto);
-    List<Product> findAll();
+    List<ProductViewDto> findAll();
     Boolean saveImg(MultipartFile file , Long id);
 
 }

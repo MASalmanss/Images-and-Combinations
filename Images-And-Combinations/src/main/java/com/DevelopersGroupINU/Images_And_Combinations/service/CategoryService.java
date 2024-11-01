@@ -11,5 +11,5 @@ public interface CategoryService {
     CategoryViewDto findById(Long id);
     Void deleteById(Long id);
     Category update(Category category);
-    List<Category> findAll();
+    List<CategoryViewDto> findAll();
 }
