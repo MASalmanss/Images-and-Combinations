@@ -1,8 +1,11 @@
 package com.DevelopersGroupINU.Images_And_Combinations.service;
 
+import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.UserCreateDto;
+import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.UserUpdateDto;
+import com.DevelopersGroupINU.Images_And_Combinations.dto.responseDtos.UserViewDto;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Users;
+import com.DevelopersGroupINU.Images_And_Combinations.mapper.UserMapper;
 import com.DevelopersGroupINU.Images_And_Combinations.repository.UsersRepository;
-import jakarta.validation.constraints.Null;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +16,21 @@ import java.util.List;
 public class UsersServiceImpl implements UsersService{
 
     private final UsersRepository usersRepository;
+    private final UserMapper userMapper;
+
+
     @Override
-    public Void save(Users users) {
+    public Void save(UserCreateDto userCreateDto) {
+        Users users = userMapper.dtoToEntity(userCreateDto);
+        users.setActive(true);
         usersRepository.save(users);
         return null;
     }
 
     @Override
-    public Users findById(Long id) {
-        return null;
+    public UserViewDto findById(Long id) {
+        Users users = usersRepository.findById(id).orElseThrow(()-> new RuntimeException("User not found !"));
+        return userMapper.entityToDto(users);
     }
 
     @Override
@@ -30,12 +39,14 @@ public class UsersServiceImpl implements UsersService{
     }
 
     @Override
-    public Users update(Users users) {
+    public UserViewDto update(UserUpdateDto userUpdateDto) {
         return null;
     }
 
     @Override
-    public List<Users> findAll() {
-        return usersRepository.findAll();
+    public List<UserViewDto> findAll() {
+        List<Users> users = usersRepository.findAll();
+        List<UserViewDto> dtoList = userMapper.entityListToDtoList(users);
+        return dtoList;
     }
 }
