@@ -1,5 +1,6 @@
 package com.DevelopersGroupINU.Images_And_Combinations.mapper;
 
+import com.DevelopersGroupINU.Images_And_Combinations.dto.authDtos.RegisterDto;
 import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.UserCreateDto;
 import com.DevelopersGroupINU.Images_And_Combinations.dto.responseDtos.UserViewDto;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Users;
@@ -13,4 +14,9 @@ public interface UserMapper {
     UserViewDto entityToDto(Users users);
 
     List<UserViewDto> entityListToDtoList(List<Users> users);
+
+    Users dtoToEntity(RegisterDto registerDto);
+
+
+
 }
