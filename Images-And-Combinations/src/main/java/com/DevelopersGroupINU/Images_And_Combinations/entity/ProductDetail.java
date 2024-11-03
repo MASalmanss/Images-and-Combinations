@@ -1,10 +1,14 @@
 package com.DevelopersGroupINU.Images_And_Combinations.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class ProductDetail {
 
     @Id
