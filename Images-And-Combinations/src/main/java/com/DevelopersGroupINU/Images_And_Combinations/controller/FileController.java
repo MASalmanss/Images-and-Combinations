@@ -1,5 +1,6 @@
 package com.DevelopersGroupINU.Images_And_Combinations.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -54,13 +55,13 @@ public class FileController {
             Files.write(path, file.getBytes());
 
             // 2. Dosyayı iki farklı API'ye gönder
-            String responseFromApi1 = sendFileToExternalApi(file, API_URL_1);
-            String responseFromApi2 = sendFileToExternalApi(file, API_URL_2);
+            Map<String, Object> responseFromApi1 = parseJsonResponse(sendFileToExternalApi(file, API_URL_1));
+            Map<String, Object> responseFromApi2 = parseJsonResponse(sendFileToExternalApi(file, API_URL_2));
 
             // 3. Gelen yanıtları birleştir
             Map<String, Object> combinedResponse = new HashMap<>();
-            combinedResponse.put("api1Response", responseFromApi1);
-            combinedResponse.put("api2Response", responseFromApi2);
+            combinedResponse.put("gender_prediction", responseFromApi1.get("gender_prediction"));
+            combinedResponse.put("age_prediction", responseFromApi2.get("age_prediction"));
 
             // 4. Yanıtı döndür
             return combinedResponse;
@@ -93,6 +94,11 @@ public class FileController {
 
         // Yanıtı döndür
         return response.getBody();
+    }
+
+    private Map<String, Object> parseJsonResponse(String jsonResponse) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(jsonResponse, Map.class);
     }
 
     private String getFileExtension(String fileName) {
