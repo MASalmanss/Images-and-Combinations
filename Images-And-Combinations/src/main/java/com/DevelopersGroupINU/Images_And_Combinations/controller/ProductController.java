@@ -70,7 +70,10 @@ public class ProductController {
 
 
     }
+    /*
 
+    @GetMapping("/combine/{id}")
+    public ResponseEntity<> getProducts()
 
-
+     */
 }

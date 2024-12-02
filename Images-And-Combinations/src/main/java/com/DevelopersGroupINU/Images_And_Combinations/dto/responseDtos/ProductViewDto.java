@@ -10,4 +10,5 @@ public class ProductViewDto {
     private String material;
     private String brand;
     private double price;
+    private String imageName;
 }

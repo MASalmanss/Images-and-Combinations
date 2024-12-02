@@ -20,7 +20,7 @@ import java.util.List;
 public class UsersController {
 
     private final UsersService usersService;
-
+/*
     @GetMapping("/{id}")
     public ResponseEntity<UserViewDto> findById(@PathVariable Long id){
         var users = usersService.findById(id);
@@ -52,7 +52,7 @@ public class UsersController {
         var nesne = usersService.update(userUpdateDto);
         return ResponseEntity.ok(nesne);
     }
-
+*/
     @PostMapping("/file/{id}")
     public ResponseEntity<Void> saveFile(@RequestParam("file")MultipartFile file , @PathVariable("id") Long id){
         var sonuc = usersService.saveImg(file , id);

@@ -16,6 +16,7 @@ public interface ProductMapper {
     @Mapping(source = "productDetail.material", target = "material")
     @Mapping(source = "productDetail.brand", target = "brand")
     @Mapping(source = "productDetail.price", target = "price")
+    @Mapping(source = "productDetail.imageName", target = "imageName")
     ProductViewDto entityToDto(Product product);
 
     List<ProductViewDto> entityListToDtoList(List<Product> products);
