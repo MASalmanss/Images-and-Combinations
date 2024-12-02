@@ -24,6 +24,9 @@ public class Users {
     private boolean isActive;
     private String imageName;
 
+    private String gender;
+    private String ageStage;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 

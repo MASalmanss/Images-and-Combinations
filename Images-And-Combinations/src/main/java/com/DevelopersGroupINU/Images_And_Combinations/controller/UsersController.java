@@ -9,6 +9,7 @@ import com.DevelopersGroupINU.Images_And_Combinations.service.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -50,6 +51,12 @@ public class UsersController {
     public ResponseEntity<UserViewDto> update(@RequestBody UserUpdateDto userUpdateDto){
         var nesne = usersService.update(userUpdateDto);
         return ResponseEntity.ok(nesne);
+    }
+
+    @PostMapping("/file/{id}")
+    public ResponseEntity<Void> saveFile(@RequestParam("file")MultipartFile file , @PathVariable("id") Long id){
+        var sonuc = usersService.saveImg(file , id);
+        return sonuc ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 
 }
