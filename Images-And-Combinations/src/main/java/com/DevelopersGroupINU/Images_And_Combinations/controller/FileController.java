@@ -41,7 +41,6 @@ public class FileController {
         }
 
         try {
-            // 1. Dosyayı yerel olarak kaydet
             Path uploadPath = Paths.get(UPLOAD_DIR);
             if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath);
