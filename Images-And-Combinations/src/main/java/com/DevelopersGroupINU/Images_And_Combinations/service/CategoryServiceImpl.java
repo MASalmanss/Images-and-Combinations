@@ -2,8 +2,11 @@ package com.DevelopersGroupINU.Images_And_Combinations.service;
 
 import com.DevelopersGroupINU.Images_And_Combinations.dto.requestDtos.CategoryCreateDto;
 import com.DevelopersGroupINU.Images_And_Combinations.dto.responseDtos.CategoryViewDto;
+import com.DevelopersGroupINU.Images_And_Combinations.dto.responseDtos.ProductViewDto;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Category;
+import com.DevelopersGroupINU.Images_And_Combinations.entity.Product;
 import com.DevelopersGroupINU.Images_And_Combinations.mapper.CategoryMapper;
+import com.DevelopersGroupINU.Images_And_Combinations.mapper.ProductMapper;
 import com.DevelopersGroupINU.Images_And_Combinations.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
+    private final ProductMapper productMapper;
     @Override
     public Void save(CategoryCreateDto categoryCreateDto) {
         Category category = categoryMapper.dtoToEntity(categoryCreateDto);
@@ -44,4 +48,14 @@ public class CategoryServiceImpl implements CategoryService{
         List<CategoryViewDto> liste = categoryMapper.entityListTodtoList(list);
         return liste;
     }
+
+    @Override
+    public List<ProductViewDto> findAllProductsByCategory(Long id) {
+        Category category = categoryRepository.findById(id).orElseThrow(()-> new RuntimeException("category not found"));
+        List<Product> products = category.getProducts();
+        return productMapper.entityListToDtoList(products);
+
+    }
+
+
 }

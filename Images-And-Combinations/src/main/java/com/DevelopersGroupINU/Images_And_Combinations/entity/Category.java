@@ -27,6 +27,6 @@ public class Category {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "category")
-    private Set<Product> products;
+    private List<Product> products;
 
 }

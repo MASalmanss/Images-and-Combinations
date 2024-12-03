@@ -32,6 +32,7 @@ public class FileController {
     private static final String API_URL_1 = "http://127.0.0.1:8000/predict/gender";
     private static final String API_URL_2 = "http://127.0.0.1:8000/predict/age";
 
+    /*
     @PostMapping("/upload")
     public Map<String, Object> fileUpload(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
@@ -72,7 +73,7 @@ public class FileController {
             return errorResponse;
         }
     }
-
+    */
     private String sendFileToExternalApi(MultipartFile file, String apiUrl) throws IOException {
         // Header ve body hazırlama
         HttpHeaders headers = new HttpHeaders();
