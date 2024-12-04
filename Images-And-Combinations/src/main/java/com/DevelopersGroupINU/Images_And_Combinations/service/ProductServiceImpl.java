@@ -34,7 +34,7 @@ public class ProductServiceImpl implements ProductService{
 
 
     @Override
-    public Void save(ProductCreateDto productCreateDto) {
+    public ProductViewDto save(ProductCreateDto productCreateDto) {
         Category category = categoryRepository.findById(productCreateDto.getCategoryId()).orElseThrow(()-> new RuntimeException("Kategöri bulunamadı"));
 
         Product product = new Product();
@@ -48,7 +48,8 @@ public class ProductServiceImpl implements ProductService{
         product.setProductDetail(productDetail);
         product.setCategory(category);
         productRepository.save(product);
-        return null;
+        var view = productMapper.entityToDto(product);
+        return view;
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    Void save(ProductCreateDto productCreateDto);
+    ProductViewDto save(ProductCreateDto productCreateDto);
     ProductViewDto findById(Long id);
     Void deleteById(Long id);
     ProductViewDto update(ProductUpdateDto productUpdateDto , Long id);
