@@ -40,22 +40,30 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductViewDto save(ProductCreateDto productCreateDto) {
-        Category category = categoryRepository.findById(productCreateDto.getCategoryId()).orElseThrow(()-> new RuntimeException("Kategöri bulunamadı"));
+        Category category = categoryRepository.findById(productCreateDto.getCategoryId())
+                .orElseThrow(() -> new RuntimeException("Kategori bulunamadı"));
 
         Product product = new Product();
         ProductDetail productDetail = new ProductDetail();
+
+        // DTO'dan gelen veriler
         productDetail.setBrand(productCreateDto.getBrand());
         productDetail.setPrice(productCreateDto.getPrice());
         productDetail.setSize(productCreateDto.getSize());
         productDetail.setMaterial(productCreateDto.getMaterial());
         product.setName(productCreateDto.getName());
+        product.setGender(productCreateDto.getGender());
+        product.setAgeStage(productCreateDto.getAgeStage());
+
+        // İlişkiler
         productDetail.setProduct(product);
         product.setProductDetail(productDetail);
         product.setCategory(category);
+
         productRepository.save(product);
-        var view = productMapper.entityToDto(product);
-        return view;
+        return productMapper.entityToDto(product);
     }
+
 
     @Override
     public ProductViewDto findById(Long id) {
@@ -70,11 +78,19 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductViewDto update(ProductUpdateDto productUpdateDto, Long id) {
-        Product product = productRepository.findById(id).orElseThrow(()-> new RuntimeException("Not found"));
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Ürün bulunamadı"));
+
+        // Güncellenebilir alanlar
         product.setName(productUpdateDto.getName());
-        var productnew = productRepository.save(product);
-        return productMapper.entityToDto(productnew);
+        product.setGender(productUpdateDto.getGender());
+        product.setAgeStage(productUpdateDto.getAgeStage());
+
+        // Kaydet ve döndür
+        Product updatedProduct = productRepository.save(product);
+        return productMapper.entityToDto(updatedProduct);
     }
+
 
 
     @Override
@@ -124,7 +140,7 @@ public class ProductServiceImpl implements ProductService{
         List<Product> filteredProducts = productRepository.findByGenderAndAgeStage(userGender, userAgeStage);
 
         if (filteredProducts.isEmpty()) {
-            throw new RuntimeException("No products match the user's criteria");
+            throw new RuntimeException("Bu kullanıcıya uygun ürün bulunamadı");
         }
 
         Collections.shuffle(filteredProducts);
