@@ -21,6 +21,8 @@ public class Product {
     private Long id;
 
     private String name;
+    private String gender;
+    private String ageStage;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -32,9 +34,7 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL , fetch = FetchType.LAZY)
     private ProductDetail productDetail;
-
-
 }
+

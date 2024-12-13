@@ -9,4 +9,7 @@ public class ProductUpdateDto {
     private String material;
     private String brand;
     private double price;
+    private String gender;
+    private String ageStage;
 }
+

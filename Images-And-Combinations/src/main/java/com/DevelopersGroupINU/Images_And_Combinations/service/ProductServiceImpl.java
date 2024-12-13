@@ -6,10 +6,12 @@ import com.DevelopersGroupINU.Images_And_Combinations.dto.responseDtos.ProductVi
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Category;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.Product;
 import com.DevelopersGroupINU.Images_And_Combinations.entity.ProductDetail;
+import com.DevelopersGroupINU.Images_And_Combinations.entity.Users;
 import com.DevelopersGroupINU.Images_And_Combinations.mapper.ProductMapper;
 import com.DevelopersGroupINU.Images_And_Combinations.repository.CategoryRepository;
 import com.DevelopersGroupINU.Images_And_Combinations.repository.ProductDetailsRepository;
 import com.DevelopersGroupINU.Images_And_Combinations.repository.ProductRepository;
+import com.DevelopersGroupINU.Images_And_Combinations.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,8 +20,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +33,7 @@ public class ProductServiceImpl implements ProductService{
     private final ProductDetailsRepository productDetailsRepository;
     private final CategoryRepository categoryRepository;
     private final ProductMapper productMapper;
+    private final UsersRepository usersRepository;
 
     private static final String UPLOAD_DIR = "uploads/";
 
@@ -107,6 +112,30 @@ public class ProductServiceImpl implements ProductService{
             return false;
         }
     }
+
+    @Override
+    public List<ProductViewDto> getAllProductsByPersonal(Long userId) {
+
+        Users user = usersRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+
+        String userGender = user.getGender();
+        String userAgeStage = user.getAgeStage();
+
+        List<Product> filteredProducts = productRepository.findByGenderAndAgeStage(userGender, userAgeStage);
+
+        if (filteredProducts.isEmpty()) {
+            throw new RuntimeException("No products match the user's criteria");
+        }
+
+        Collections.shuffle(filteredProducts);
+
+        return filteredProducts.stream()
+                .limit(4)
+                .map(product -> productMapper.entityToDto(product))
+                .collect(Collectors.toList());
+    }
+
+
 
 
     private String getFileExtension(String fileName) {

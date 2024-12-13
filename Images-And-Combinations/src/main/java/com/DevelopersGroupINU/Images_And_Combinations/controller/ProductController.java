@@ -100,4 +100,11 @@ public class ProductController {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    @GetMapping("/personal/{id}")
+    public ResponseEntity<List<ProductViewDto>> getAllProductsByPersonal(@PathVariable Long id) {
+        List<ProductViewDto> products = productService.getAllProductsByPersonal(id);
+        return ResponseEntity.ok(products);
+    }
+
 }

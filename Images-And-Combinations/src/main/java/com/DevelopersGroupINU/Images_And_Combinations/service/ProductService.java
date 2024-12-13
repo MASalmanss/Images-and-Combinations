@@ -15,5 +15,6 @@ public interface ProductService {
     ProductViewDto update(ProductUpdateDto productUpdateDto , Long id);
     List<ProductViewDto> findAll();
     Boolean saveImg(MultipartFile file , Long id);
+    List<ProductViewDto> getAllProductsByPersonal(Long id);
 
 }

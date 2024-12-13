@@ -10,4 +10,7 @@ public class ProductCreateDto {
     private String brand;
     private double price;
     private Long categoryId;
+    private String gender;
+    private String ageStage;
 }
+

@@ -17,10 +17,10 @@ public interface ProductMapper {
     @Mapping(source = "productDetail.brand", target = "brand")
     @Mapping(source = "productDetail.price", target = "price")
     @Mapping(source = "productDetail.imageName", target = "imageName")
+    @Mapping(source = "gender", target = "gender")
+    @Mapping(source = "ageStage", target = "ageStage")
     ProductViewDto entityToDto(Product product);
 
     List<ProductViewDto> entityListToDtoList(List<Product> products);
-
-
-
 }
+
